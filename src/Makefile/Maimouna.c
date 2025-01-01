@@ -1,2 +1,0 @@
-CC Makefile :
-run source
