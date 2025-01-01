@@ -1,25 +1,6 @@
-#include <stdio.h>
-#include<stdlib.h>
-typedef struct position vitesse temp param
-struct position{
-double x;
-double y;
-double z;
-};
+ #ifndef Maisaf
+ #define Maisaf
+ void position(double x);
+ void calcul_equation(double *x, double*y, double*);
+ #endif
 
-struct vitesse{
-double dx;
-double dy;
-double dz;
-};
-
-struct temp{ 
-double dt;
-double t;
-};
-
-struct param{
-double sigma;
-double rho;
-double beta;
-};
