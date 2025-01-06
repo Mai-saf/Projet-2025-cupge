@@ -1,1 +1,36 @@
-Ce projet consiste à calculer la trajectoire d'un point.
+Projet : Simulation de Trajectoires Lorenz
+
+1.	Introduction
+
+Ce projet a pour objectif de simuler les trajectoires d'un point dans un système dynamique basé sur les équations de Lorenz. 
+L'utilisateur peut configurer les paramètres du système, ainsi que les conditions initiales, pour générer un fichier de données utilisable avec Gnuplot. 
+Ce fichier contient les coordonnées calculées du point au fil du temps, qui peuvent être visualisées sous forme de graphique 3D.
+
+2. Fonctionnalités principales 
+
+•	Simulation des trajectoires basées sur les équations de Lorenz. 
+•	Paramètres configurables : sigma, rho, beta, conditions initiales (x, y, z), pas de temps et durée totale.
+•	Création d'un fichier de données compatible avec Gnuplot pour visualisation. 
+
+3. Compilation et exécution
+
+Le projet inclut un Makefile pour simplifier la compilation et l'exécution. Les étapes sont décrites dans le fichier README.md. 
+L'exécution du programme génère un fichier de données nommé par l'utilisateur.
+
+ 4. Visualisation 
+
+Pour visualiser la trajectoire, utilisez Gnuplot. Voici les étapes pour afficher les trajectoires :
+•	Lancer Gnuplot
+•	Afficher les trajectoires simples
+•	Ajouter les différentes couleurs (bleu, jaune, vert et rouge) en fonction du temps
+•	Exporter le graphique en le sauvegardant en format PNG
+
+ 5. Modularité et extensibilité
+
+ Le code est structuré pour permettre l'ajout de nouveaux systèmes dynamiques en modifiant les fonctions associées.
+ Les paramètres sont encapsulés dans une structure, facilitant ainsi la modularité. 
+
+6. Conclusion
+
+ Ce projet constitue une introduction à la modélisation des systèmes dynamiques en C, ainsi qu'à l'utilisation d'outils comme Gnuplot pour visualiser des données.
+ Il est conçu pour être extensible et modulaire
