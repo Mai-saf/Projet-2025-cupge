@@ -16,7 +16,7 @@ Cela va permettre de générer un executable dans le répertoire
 
 Lancez le programme en executant:
 
-     ./bin/lorenz_sim
+     ./bin/main
 
 
 Le programme vous demandera par la suite de rentrer les paramètres suivant: les coefficients, les conditions initiales x, y et z, le pas de temps et la durée totale et le nom du fichier de sortie
