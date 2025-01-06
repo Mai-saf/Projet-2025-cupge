@@ -6,13 +6,13 @@
 
 int main(){
     
-    System sys;
+    System systems;
     double x, y, z;
     double dt = 0.01;
     int Tmax;
     
 
-    if(!configure_system(&sys)){
+    if(!configure_system(&systems)){
         printf("Erreur dans la configuration du système. Fin du programme.\n");
         return 1;
     }
@@ -25,7 +25,7 @@ int main(){
 
     for (double t=0; t <= Tmax; t += dt){
         save_to_file(outplut_file, t, x, y, z);
-        sys.update(&x, &y, &z, &dt, sys.params);
+        sys.update(&x, &y, &z, &dt, system.params);
 
     }
     printf("Traectoire calculée et sauvegardée dnas '%s'\n", outplut_file);
