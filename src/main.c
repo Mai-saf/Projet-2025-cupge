@@ -16,13 +16,15 @@ int main(){
     }
 
      get_initial_condition(&x, &y, &z, &dt, &Tmax);
-    printf("toto");
+     printf("Erreur dans la configuration du système. Fin du programme.\n");
+
     char *outplut_file = "trajectoire.txt";
 
     initialize_file(outplut_file);
 
     for (double t=0; t <= Tmax; t += dt){
         save_to_file(outplut_file, t, x, y, z);
+        
         system.update(&x, &y, &z, dt, system.mouna);
 
     }
