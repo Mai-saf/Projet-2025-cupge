@@ -19,16 +19,16 @@ int main(){
 
     get_initial_conditions(&x, &y, &z, &Tmax);
 
-    char *outplut_file = "trajectoire.txt";
+    char *output_file = "trajectoire.txt";
 
-    initialize_file(outplut_file);
+    initialize_file(output_file);
 
     for (double t=0; t <= Tmax; t += dt){
-        save_to_file(outplut_file, t, x, y, z);
+        save_to_file(output_file, t, x, y, z);
         sys.update(&x, &y, &z, &dt, system.params);
 
     }
-    printf("Traectoire calculée et sauvegardée dnas '%s'\n", outplut_file);
+    printf("Traectoire calculée et sauvegardée dnas '%s'\n", output_file);
     FILE *gnuplot_pipe = popen("gnuplot -persistent", "w");
     if (!gnuplot_pipe){
         perror("Erreur au lancement de Gnuplot");
@@ -44,7 +44,7 @@ int main(){
     fprintf(gnuplot_pipe, "set zlabel 'Z'\n");
     fprintf(gnuplot_pipe, "set cblabel 'Temps'\n");
 
-    fprintf(gnuplot_pipe, "splot '%s' using 2:3:4:1 with linespoints palette title 'Trajet'\n", outplut_file);
+    fprintf(gnuplot_pipe, "splot '%s' using 2:3:4:1 with linespoints palette title 'Trajet'\n", output_file);
 
     fprintf(gnuplot_pipe, "pause -1\n");
 
