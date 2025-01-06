@@ -2,6 +2,7 @@
 #include<ctype.h>
 #include<stdlib.h>
 #include "utils.h"
+#include "system.h"
 
 void initialize_file(const char *filename) {
     FILE *file = fopen (filename, "w");
@@ -20,20 +21,20 @@ void save_to_file (const char *filename, double t, double x, double y, double z)
         perror ("Erreur lors de l'ouverture du fichier");
         return ;
 
-    } 
+    }
     fprintf(file, "%lf %lf %lf %lf\n", t, x, y, z);
     fclose(file);
 
 }
 
-void get_initiale_condition(double *x, double *y, double *z, double *dt, int *Tmax){
+void get_initial_condition(double *x, double *y, double *z, double *dt, int *Tmax){
     printf("Entrez les positions intitiales (x, y, z) : ");
-    scanf("%lf %lf %lf, x, y, z");
+    scanf("%lf %lf %lf", x, y, z);
 
     printf("Entrez l'incrément de temps dt : ");
     scanf("%lf", dt);
 
-    Printf("Entrez le temps maximum Tmax : ");
+    printf("Entrez le temps maximum Tmax : ");
     scanf("%d", Tmax);
 
     if (*dt <=0 || *Tmax <= 0) {
@@ -42,7 +43,7 @@ void get_initiale_condition(double *x, double *y, double *z, double *dt, int *Tm
     }
 }
 
-double evaluate_rpn(const char *rpn, double x, double y, double z, Parameters params) {
+double evaluate_rpn(const char *rpn, double x, double y, double z, struct  parameters *params) {
     double stack[100];
     int sp = 0;
 
@@ -51,7 +52,7 @@ double evaluate_rpn(const char *rpn, double x, double y, double z, Parameters pa
 
         if (isspace(c)) {
             continue;
-        } 
+        }
         if (c == 'x'){
             stack[sp++] = x;
         }else if (c == 'y'){
@@ -59,18 +60,18 @@ double evaluate_rpn(const char *rpn, double x, double y, double z, Parameters pa
         }else if (c == 'z'){
             stack[sp++] = z;
         }else if(c == 's'){
-            stack[sp++] = params.sigma;
+            stack[sp++] = params->sigma;
         }else if (c == 'r'){
-            stack[sp++] = params.rho;
+            stack[sp++] = params->rho;
         }else if (c == 'r'){
-          stack[sp++] = params.beta;   
+          stack[sp++] = params->beta;
         }
         else if (c == '+' || c == '*' || c == '/')  {
             if (sp < 2){
                 fprintf (stderr, "Erreur : pile insuffisante pour '%C'.\n", c);
                 exit(1);
             }
-        double b = stack[--sp]; 
+        double b = stack[--sp];
         double a = stack[--sp];
 
         switch (c) {
@@ -79,7 +80,7 @@ double evaluate_rpn(const char *rpn, double x, double y, double z, Parameters pa
             case '*' : stack[sp++] = a * b; break;
             case '/' : stack[sp++] = (b!= 0) ? a /b: 0; break;
         }
-        }  
+        }
 
     else if (isdigit(c) || c == '.'){
         char buffer[16];
@@ -107,7 +108,6 @@ double evaluate_rpn(const char *rpn, double x, double y, double z, Parameters pa
     return stack[0];
 
 }
-    
 
 
 
@@ -116,7 +116,8 @@ double evaluate_rpn(const char *rpn, double x, double y, double z, Parameters pa
 
 
 
-  
+
+
 
 
 
