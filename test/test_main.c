@@ -1,12 +1,12 @@
-#include <stdio.h>
+#include <stdio.h> 
 #include <stdlib.h>
-#include "systems.h"
-#include "utils.h"
+#include "system.h"  
+#include "utils.h"   
 
 
 int test_configure_system() {
-    System systems;
-    int result = configure_system(&systems);
+    struct System system; 
+    int result = configure_system(&system);
 
     if (result) {
         printf("✅ test_configure_system : Système configuré correctement.\n");
@@ -14,6 +14,7 @@ int test_configure_system() {
     } else {
         printf("❌ test_configure_system : Échec de la configuration du système.\n");
         return 1; 
+    }
 }
 
 
@@ -26,7 +27,6 @@ int test_get_initial_conditions() {
     if (Tmax > 0) {
         printf("✅ test_get_initial_conditions : Conditions initiales valides (x=%.2f, y=%.2f, z=%.2f, Tmax=%d).\n", x, y, z, Tmax);
         return 0; 
-    } else {
         printf("❌ test_get_initial_conditions : Tmax est incorrect.\n");
         return 1; 
     }
@@ -40,10 +40,10 @@ int test_file_output() {
         return 1; 
     }
 
-    // Écrire dans le fichier temporaire
+    
     fprintf(temp_file, "%.2f %.2f %.2f %.2f\n", 0.0, 1.0, 2.0, 3.0);
 
- 
+    
     rewind(temp_file);
 
   
@@ -57,7 +57,7 @@ int test_file_output() {
     
     fclose(temp_file);
 
-    // Vérifier les données
+   
     if (t == 0.0 && x == 1.0 && y == 2.0 && z == 3.0) {
         printf("✅ test_file_output : Les données ont été sauvegardées correctement dans le fichier temporaire.\n");
         return 0; 
@@ -77,7 +77,7 @@ int main() {
     total_errors += test_get_initial_conditions();
     total_errors += test_file_output();
 
- 
+    
     if (total_errors == 0) {
         printf("🎉 Tous les tests ont été passés avec succès !\n");
     } else {
