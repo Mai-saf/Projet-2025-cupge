@@ -18,20 +18,21 @@ int test_configure_system() {
 }
 
 
-int test_get_initial_conditions() {
+int test_get_initial_condition() {
     double x, y, z;
     int Tmax;
+    double dt;
 
-    get_initial_conditions(&x, &y, &z, &Tmax);
+    get_initial_condition(&x, &y, &z, &dt, &Tmax);
 
     if (Tmax > 0) {
-        printf("✅ test_get_initial_conditions : Conditions initiales valides (x=%.2f, y=%.2f, z=%.2f, Tmax=%d).\n", x, y, z, Tmax);
-        return 0; 
-        printf("❌ test_get_initial_conditions : Tmax est incorrect.\n");
+        printf("✅ test_get_initial_condition : Conditions initiales valides (x=%.2f, y=%.2f, z=%.2f, Tmax=%d).\n", x, y, z, Tmax);
+        return 0;
+    }else{
+        printf("❌ test_get_initial_condition : Tmax est incorrect.\n");
         return 1; 
-    }
+ }
 }
-
 
 int test_file_output() {
     FILE *temp_file = tmpfile(); 
@@ -74,7 +75,7 @@ int main() {
 
     
     total_errors += test_configure_system();
-    total_errors += test_get_initial_conditions();
+    total_errors += test_get_initial_condition();
     total_errors += test_file_output();
 
     
